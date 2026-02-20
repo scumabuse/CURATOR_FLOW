@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+// 1. Увеличиваем лимит времени выполнения для Vercel (спасает от ошибки 504)
+export const runtime = 'edge'
+
 export async function POST(req: NextRequest) {
   try {
     const { screenshotBase64, studentName, taskTitle } = await req.json()
@@ -18,6 +21,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ approved: false, reason: 'Скриншот не загружен' }, { status: 400 })
     }
 
+    // 2. Очищаем Base64 от префикса (иначе Google API выдает ошибку)
+    const cleanBase64 = screenshotBase64.replace(/^data:image\/(png|jpeg|jpg|webp);base64,/, '');
+
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
       {
@@ -27,9 +33,10 @@ export async function POST(req: NextRequest) {
           contents: [{
             parts: [
               {
-                inline_data: {
-                  mime_type: 'image/jpeg',
-                  data: screenshotBase64
+                // 3. Исправлено на camelCase, как того требует REST API Гугла
+                inlineData: {
+                  mimeType: 'image/jpeg',
+                  data: cleanBase64
                 }
               },
               {
@@ -47,7 +54,11 @@ export async function POST(req: NextRequest) {
 }`
               }
             ]
-          }]
+          }],
+          // Жестко форсируем ответ в формате JSON
+          generationConfig: {
+            responseMimeType: "application/json"
+          }
         })
       }
     )
