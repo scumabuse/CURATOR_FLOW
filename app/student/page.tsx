@@ -2,6 +2,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Sidebar from '@/components/Sidebar'
+import ScrollReveal from '@/components/ScrollReveal'
 
 interface User { id: string; name: string; role: string; groupId?: string }
 interface Task {
@@ -150,14 +151,16 @@ export default function StudentDashboard() {
                   { label: 'Выполнено', val: done.length, gradient: 'linear-gradient(135deg, rgba(34,197,94,0.12), rgba(16,185,129,0.06))', color: '#4ade80' },
                   { label: 'Ожидают сдачи', val: pending.length, gradient: 'linear-gradient(135deg, rgba(245,158,11,0.12), rgba(251,191,36,0.06))', color: '#fbbf24' },
                 ].map((s, i) => (
-                  <div key={i} className="stat-card animate-in" style={{ animationDelay: `${i * 0.08}s`, background: s.gradient, border: 'none' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <div>
-                        <div style={{ fontSize: 12, color: '#64748b', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{s.label}</div>
-                        <div style={{ fontFamily: 'Sora, sans-serif', fontSize: 34, fontWeight: 700, color: s.color }}>{s.val}</div>
+                  <ScrollReveal key={i} direction="up" delay={i * 0.08} duration={0.5}>
+                    <div className="stat-card" style={{ background: s.gradient, border: 'none' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div>
+                          <div style={{ fontSize: 12, color: '#64748b', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{s.label}</div>
+                          <div style={{ fontFamily: 'Sora, sans-serif', fontSize: 34, fontWeight: 700, color: s.color }}>{s.val}</div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </ScrollReveal>
                 ))}
               </div>
 

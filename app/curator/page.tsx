@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Sidebar from '@/components/Sidebar'
+import ScrollReveal from '@/components/ScrollReveal'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
 
 interface User { id: string; name: string; role: string }
@@ -54,48 +55,54 @@ export default function CuratorDashboard() {
               { label: 'Заданий', val: totalTasks, gradient: 'linear-gradient(135deg, rgba(245,158,11,0.12), rgba(251,191,36,0.06))', color: '#fbbf24' },
               { label: 'Сэкономлено ч/нед', val: '5+', gradient: 'linear-gradient(135deg, rgba(239,68,68,0.1), rgba(244,63,94,0.06))', color: '#f87171' },
             ].map((s, i) => (
-              <div key={i} className="stat-card animate-in" style={{ animationDelay: `${i * 0.08}s`, background: s.gradient }}>
-                <div>
-                  <div style={{ fontSize: 12, color: '#64748b', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{s.label}</div>
-                  <div style={{ fontFamily: 'Sora, sans-serif', fontSize: 30, fontWeight: 700, color: s.color }}>{s.val}</div>
+              <ScrollReveal key={i} direction="up" delay={i * 0.08} duration={0.5}>
+                <div className="stat-card" style={{ background: s.gradient }}>
+                  <div>
+                    <div style={{ fontSize: 12, color: '#64748b', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{s.label}</div>
+                    <div style={{ fontFamily: 'Sora, sans-serif', fontSize: 30, fontWeight: 700, color: s.color }}>{s.val}</div>
+                  </div>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
 
           {/* Charts */}
           {groups.length > 0 && (
             <div className="charts-grid">
-              <div className="card">
-                <h3 style={{ fontFamily: 'Sora, sans-serif', fontSize: 15, fontWeight: 600, marginBottom: 20, color: '#f1f5f9' }}>Активность по группам</h3>
-                <ResponsiveContainer width="100%" height={180}>
-                  <BarChart data={chartData}>
-                    <XAxis dataKey="name" tick={{ fontSize: 12, fill: '#64748b' }} axisLine={{ stroke: 'rgba(255,255,255,0.06)' }} />
-                    <YAxis tick={{ fontSize: 12, fill: '#64748b' }} axisLine={{ stroke: 'rgba(255,255,255,0.06)' }} />
-                    <Tooltip contentStyle={{ background: 'rgba(10,15,30,0.95)', border: '1px solid rgba(139,92,246,0.2)', borderRadius: 12, color: '#f1f5f9' }} />
-                    <Bar dataKey="студентов" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
-                    <Bar dataKey="заданий" fill="#6366f1" radius={[4, 4, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-
-              <div className="card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <h3 style={{ fontFamily: 'Sora, sans-serif', fontSize: 15, fontWeight: 600, marginBottom: 20, alignSelf: 'flex-start', color: '#f1f5f9' }}>Статус выполнения</h3>
-                <PieChart width={180} height={180}>
-                  <Pie data={pieData} cx={85} cy={85} outerRadius={70} dataKey="value" strokeWidth={0}>
-                    {pieData.map((entry, i) => <Cell key={i} fill={entry.color} />)}
-                  </Pie>
-                  <Tooltip contentStyle={{ background: 'rgba(10,15,30,0.95)', border: '1px solid rgba(139,92,246,0.2)', borderRadius: 12, color: '#f1f5f9' }} />
-                </PieChart>
-                <div style={{ display: 'flex', gap: 16, marginTop: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
-                  {pieData.map((d, i) => (
-                    <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: '#94a3b8' }}>
-                      <span style={{ width: 8, height: 8, borderRadius: '50%', background: d.color, display: 'inline-block', boxShadow: `0 0 8px ${d.color}40` }}></span>
-                      {d.name}
-                    </div>
-                  ))}
+              <ScrollReveal direction="left" delay={0.1}>
+                <div className="card">
+                  <h3 style={{ fontFamily: 'Sora, sans-serif', fontSize: 15, fontWeight: 600, marginBottom: 20, color: '#f1f5f9' }}>Активность по группам</h3>
+                  <ResponsiveContainer width="100%" height={180}>
+                    <BarChart data={chartData}>
+                      <XAxis dataKey="name" tick={{ fontSize: 12, fill: '#64748b' }} axisLine={{ stroke: 'rgba(255,255,255,0.06)' }} />
+                      <YAxis tick={{ fontSize: 12, fill: '#64748b' }} axisLine={{ stroke: 'rgba(255,255,255,0.06)' }} />
+                      <Tooltip contentStyle={{ background: 'rgba(10,15,30,0.95)', border: '1px solid rgba(139,92,246,0.2)', borderRadius: 12, color: '#f1f5f9' }} />
+                      <Bar dataKey="студентов" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+                      <Bar dataKey="заданий" fill="#6366f1" radius={[4, 4, 0, 0]} />
+                    </BarChart>
+                  </ResponsiveContainer>
                 </div>
-              </div>
+              </ScrollReveal>
+
+              <ScrollReveal direction="right" delay={0.2}>
+                <div className="card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <h3 style={{ fontFamily: 'Sora, sans-serif', fontSize: 15, fontWeight: 600, marginBottom: 20, alignSelf: 'flex-start', color: '#f1f5f9' }}>Статус выполнения</h3>
+                  <PieChart width={180} height={180}>
+                    <Pie data={pieData} cx={85} cy={85} outerRadius={70} dataKey="value" strokeWidth={0}>
+                      {pieData.map((entry, i) => <Cell key={i} fill={entry.color} />)}
+                    </Pie>
+                    <Tooltip contentStyle={{ background: 'rgba(10,15,30,0.95)', border: '1px solid rgba(139,92,246,0.2)', borderRadius: 12, color: '#f1f5f9' }} />
+                  </PieChart>
+                  <div style={{ display: 'flex', gap: 16, marginTop: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
+                    {pieData.map((d, i) => (
+                      <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: '#94a3b8' }}>
+                        <span style={{ width: 8, height: 8, borderRadius: '50%', background: d.color, display: 'inline-block', boxShadow: `0 0 8px ${d.color}40` }}></span>
+                        {d.name}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ScrollReveal>
             </div>
           )}
 

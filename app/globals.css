@@ -166,6 +166,7 @@ h4 {
   letter-spacing: 0.01em;
   position: relative;
   overflow: hidden;
+  line-height: 1.3;
 }
 
 .btn-primary::before {
@@ -202,6 +203,7 @@ h4 {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-size: 14px;
   backdrop-filter: blur(8px);
+  line-height: 1.3;
 }
 
 .btn-secondary:hover {
@@ -428,6 +430,13 @@ select option {
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
+.landing-nav .btn-primary,
+.landing-nav .btn-secondary {
+  padding: 12px 28px;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
 /* Hero */
 .hero-grid {
   display: grid;
@@ -462,7 +471,132 @@ select option {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  margin-top: 24px;
+}
+
+.problem-card {
+  padding: 28px 24px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.06), rgba(15, 20, 40, 0.7));
+  border-top: 1px solid rgba(139, 92, 246, 0.2);
+  height: 100%;
+}
+
+.problem-card h3 {
+  font-family: 'Sora', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin-bottom: 10px;
+}
+
+.problem-card p {
+  font-size: 14px;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+/* Features */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.feature-card {
+  text-align: center;
+  padding: 28px 18px;
+  height: 100%;
+}
+
+.feature-card h3 {
+  font-family: 'Sora', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin-bottom: 8px;
+}
+
+.feature-card p {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* Landing sections */
+.landing-section {
+  padding-bottom: 64px;
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.section-tag {
+  font-size: 13px;
+  font-weight: 500;
+  color: #8b5cf6;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  color: #f1f5f9;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  font-size: 15px;
+  color: #64748b;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Hero stat cards */
+.hero-stat-card {
+  text-align: center;
+  padding: 24px 16px;
+}
+
+.hero-stat-val {
+  font-family: 'Sora', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #f1f5f9;
+  letter-spacing: -0.02em;
+}
+
+.hero-stat-label {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 6px;
+}
+
+/* Hero description */
+.hero-desc {
+  max-width: 460px;
+}
+
+/* CTA section */
+.cta-section {
+  text-align: center;
+  padding-top: 64px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Landing footer */
+.landing-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 28px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* CTA */
@@ -621,6 +755,43 @@ select option {
   animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
+/* ========== SCROLL REVEAL ========== */
+.sr {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.sr.sr-up {
+  transform: translateY(50px);
+}
+
+.sr.sr-down {
+  transform: translateY(-50px);
+}
+
+.sr.sr-left {
+  transform: translateX(-60px);
+}
+
+.sr.sr-right {
+  transform: translateX(60px);
+}
+
+.sr.sr-scale {
+  transform: scale(0.85);
+}
+
+.sr.sr-fade {
+  transform: none;
+}
+
+.sr.sr-visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
+
 @keyframes pulse-soft {
 
   0%,
@@ -775,19 +946,14 @@ select option {
 
   .main-content {
     margin-left: 0;
-    padding: 72px 18px 24px;
+    padding: 72px 16px 24px;
     width: 100vw;
     max-width: 100vw;
     overflow-x: hidden;
   }
 
   .landing-container {
-    padding: 0 18px;
-  }
-
-  /* Landing nav */
-  .landing-nav {
-    gap: 8px;
+    padding: 0 16px;
   }
 
   .landing-nav .btn-primary,
@@ -799,17 +965,13 @@ select option {
   /* Hero */
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
-    padding-top: 48px !important;
-    padding-bottom: 48px !important;
+    gap: 28px;
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
   }
 
   .hero-content h1 {
-    font-size: 32px;
-  }
-
-  .hero-content p {
-    font-size: 15px !important;
+    font-size: 30px;
   }
 
   .hero-stats-grid {
@@ -817,30 +979,52 @@ select option {
     gap: 10px;
   }
 
-  .hero-stats-grid .card {
-    padding: 20px 14px;
+  /* Sections */
+  .landing-section {
+    padding-bottom: 48px;
   }
 
-  /* Problems / features */
+  .section-title {
+    font-size: 26px;
+  }
+
+  .section-header {
+    margin-bottom: 28px;
+  }
+
+  /* Problems → 1 column */
   .problems-grid {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 10px;
   }
 
-  /* Features 4-col → 2-col on tablet */
-  section>div[style*="grid-template-columns: repeat(4"] {
-    grid-template-columns: repeat(2, 1fr) !important;
+  /* Features 4 → 2 */
+  .features-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding-top: 40px;
+  }
+
+  /* Footer */
+  .landing-footer {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
   }
 
   /* Dashboard grids */
   .stats-grid-4 {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 10px;
   }
 
   .stats-grid-3 {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 10px;
   }
 
   .charts-grid {
@@ -854,7 +1038,7 @@ select option {
 
   .auth-card {
     width: 100%;
-    padding: 28px 24px;
+    padding: 28px 22px;
   }
 
   .form-2col {
@@ -875,14 +1059,13 @@ select option {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    justify-content: flex-start;
   }
 
   .page-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   .task-top-row {
@@ -901,16 +1084,8 @@ select option {
     gap: 10px;
   }
 
-  /* Footer */
-  footer {
-    flex-direction: column !important;
-    gap: 12px !important;
-    text-align: center !important;
-  }
-
-  /* Stat card values — smaller on tablet */
   .stat-card {
-    padding: 18px;
+    padding: 16px;
   }
 }
 
@@ -919,85 +1094,177 @@ select option {
    ======================================================================== */
 @media (max-width: 480px) {
   .main-content {
-    padding: 68px 12px 20px;
+    padding: 66px 12px 20px;
     width: 100vw;
     max-width: 100vw;
     overflow-x: hidden;
   }
 
   .landing-container {
-    padding: 0 12px;
+    padding: 0 14px;
   }
 
-  /* Landing nav — compact */
+  /* Nav */
   .landing-nav {
-    padding: 14px 0;
+    padding: 12px 0;
     gap: 6px;
-  }
-
-  .landing-nav span[style*="fontSize: 18"] {
-    font-size: 15px !important;
   }
 
   .landing-nav .btn-primary,
   .landing-nav .btn-secondary {
-    padding: 7px 14px;
-    font-size: 12px;
+    padding: 11px 20px;
+    font-size: 14px;
+    white-space: nowrap;
   }
 
   /* Hero */
   .hero-grid {
-    padding-top: 28px !important;
-    padding-bottom: 28px !important;
-    gap: 24px;
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+    gap: 20px;
   }
 
   .hero-content h1 {
-    font-size: 26px;
-    line-height: 1.15;
+    font-size: 24px;
+    line-height: 1.2;
+    margin-bottom: 12px !important;
   }
 
-  .hero-content p {
+  .hero-desc {
     font-size: 14px !important;
-    line-height: 1.6 !important;
+    line-height: 1.55 !important;
+    margin-bottom: 20px !important;
+    max-width: 100% !important;
   }
 
+  .hero-buttons {
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .hero-buttons a {
+    width: 100%;
+  }
+
+  .hero-buttons .btn-primary,
+  .hero-buttons .btn-secondary {
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 13px 20px !important;
+    font-size: 14px !important;
+  }
+
+  /* Hero stats */
   .hero-stats-grid {
     grid-template-columns: 1fr 1fr;
     gap: 8px;
   }
 
-  .hero-stats-grid .card {
+  .hero-stat-card {
     padding: 16px 10px;
   }
 
-  .hero-stats-grid .card div[style*="fontSize: 26"] {
-    font-size: 20px !important;
+  .hero-stat-val {
+    font-size: 20px;
   }
 
-  .hero-buttons {
+  .hero-stat-label {
+    font-size: 11px;
+  }
+
+  /* Sections */
+  .landing-section {
+    padding-bottom: 36px;
+  }
+
+  .section-header {
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+
+  .section-subtitle {
+    font-size: 13px;
+  }
+
+  .section-tag {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  /* Problems — 1 col, compact */
+  .problems-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .problem-card {
+    padding: 18px 16px;
+  }
+
+  .problem-card h3 {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+
+  .problem-card p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* Features →  2 col on phone */
+  .features-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .feature-card {
+    padding: 18px 14px;
+  }
+
+  .feature-card h3 {
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+
+  .feature-card p {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  .cta-buttons {
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
 
-  .hero-buttons button {
+  .cta-buttons a {
     width: 100%;
   }
 
-  /* Features 4-col → 1-col on phone */
-  section>div[style*="grid-template-columns: repeat(4"] {
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
+  .cta-buttons .btn-primary,
+  .cta-buttons .btn-secondary {
+    width: 100%;
+    display: block;
+    text-align: center;
   }
 
-  /* Section headings */
-  section h2 {
-    font-size: 24px !important;
-  }
-
-  section p[style*="fontSize: 16"],
-  section p[style*="fontSize: 17"] {
-    font-size: 14px !important;
+  /* Footer */
+  .landing-footer {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    padding: 20px 0;
   }
 
   /* Dashboard grids */
@@ -1018,19 +1285,13 @@ select option {
 
   /* Cards */
   .card {
-    padding: 16px;
+    padding: 14px;
     border-radius: 12px;
   }
 
   .stat-card {
-    padding: 16px;
+    padding: 14px;
     border-radius: 12px;
-  }
-
-  /* Stat card values — fit phone */
-  .stat-card div[style*="fontSize: 30"],
-  .stat-card div[style*="fontSize: 34"] {
-    font-size: 24px !important;
   }
 
   /* Auth */
@@ -1039,60 +1300,39 @@ select option {
     border-radius: 14px;
   }
 
-  /* CTA */
-  .cta-buttons {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .cta-buttons button,
-  .cta-buttons a {
-    width: 100%;
-  }
-
-  /* CTA heading */
-  section h2[style*="fontSize: 40"] {
-    font-size: 26px !important;
-  }
-
   /* Buttons */
   .btn-primary,
   .btn-secondary {
-    padding: 11px 18px;
+    padding: 10px 16px;
     font-size: 13px;
   }
 
-  /* Page titles */
-  h1[style*="fontSize: 28"] {
-    font-size: 22px !important;
-  }
-
-  /* Chart containers — prevent overflow */
-  .recharts-responsive-container {
-    max-width: 100%;
-  }
-
-  /* Footer */
-  footer {
-    flex-direction: column !important;
-    gap: 10px !important;
-    text-align: center !important;
-    padding: 20px 0 !important;
-  }
-
-  footer span {
-    font-size: 12px !important;
-  }
-
-  /* Group ID badges */
-  div[style*="borderRadius: 50"][style*="whiteSpace: nowrap"] {
-    white-space: normal !important;
-    text-align: center;
-  }
-
-  /* Recharts — smaller height on phone */
+  /* Chart overflow */
+  .recharts-responsive-container,
   .recharts-wrapper {
     max-width: 100% !important;
+  }
+
+  /* ScrollReveal — smaller movement on phone */
+  .sr.sr-up {
+    transform: translateY(25px);
+  }
+
+  .sr.sr-down {
+    transform: translateY(-25px);
+  }
+
+  .sr.sr-left {
+    transform: translateX(-25px);
+  }
+
+  .sr.sr-right {
+    transform: translateX(25px);
+  }
+
+  /* Glow orbs subtler on mobile */
+  .glow-orb {
+    opacity: 0.4;
   }
 }
 
@@ -1101,7 +1341,7 @@ select option {
    ======================================================================== */
 @media (max-width: 360px) {
   .main-content {
-    padding: 64px 8px 16px;
+    padding: 62px 8px 16px;
   }
 
   .landing-container {
@@ -1109,15 +1349,20 @@ select option {
   }
 
   .hero-content h1 {
-    font-size: 22px;
+    font-size: 20px;
+  }
+
+  .hero-desc {
+    font-size: 13px !important;
   }
 
   .card {
-    padding: 14px;
+    padding: 12px;
+    border-radius: 10px;
   }
 
   .auth-card {
-    padding: 18px 12px;
+    padding: 16px 12px;
   }
 
   .stats-grid-4 {
@@ -1127,5 +1372,33 @@ select option {
   .hero-stats-grid {
     grid-template-columns: 1fr;
     gap: 6px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  /* Features → 1 colunn on very small */
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================================================
+   PREFERS REDUCED MOTION
+   ======================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .sr {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .animate-in {
+    animation: none !important;
+  }
+
+  .float-anim {
+    animation: none !important;
   }
 }

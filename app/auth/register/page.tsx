@@ -43,6 +43,26 @@ function RegisterForm() {
       <div className="glow-orb" style={{ width: 500, height: 500, background: 'radial-gradient(circle, rgba(139,92,246,0.12), transparent 70%)', top: -100, left: '50%', transform: 'translateX(-50%)' }} />
       <div className="glow-orb" style={{ width: 400, height: 400, background: 'radial-gradient(circle, rgba(99,102,241,0.08), transparent 70%)', bottom: -100, left: -50 }} />
 
+      {/* Logo — link to home */}
+      <Link href="/" style={{
+        position: 'absolute', top: 20, left: 24, zIndex: 10,
+        display: 'flex', alignItems: 'center', gap: 10,
+        textDecoration: 'none',
+      }}>
+        <div style={{
+          width: 36, height: 36,
+          background: 'linear-gradient(135deg, #8b5cf6, #6366f1)',
+          borderRadius: 9,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 0 20px rgba(139, 92, 246, 0.3)',
+        }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+            <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
+          </svg>
+        </div>
+        <span style={{ fontFamily: 'Sora, sans-serif', fontWeight: 700, fontSize: 16, color: '#f1f5f9' }}>CuratorFlow AI</span>
+      </Link>
+
       <div className="card animate-in auth-card" style={{ position: 'relative', zIndex: 1 }}>
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <div style={{
